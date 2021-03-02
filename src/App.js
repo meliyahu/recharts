@@ -74,6 +74,78 @@ const data = [
     pv: 4800,
     amt: 2181,
   },
+  {
+    date: "2001-01",
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
+  {
+    date: "2001-02",
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
+  {
+    date: "2001-03",
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
+  {
+    date: "2001-04",
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
+  {
+    date: "2001-05",
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
+  {
+    date: "2001-06",
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
+  {
+    date: "2001-07",
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
+  {
+    date: "2001-08",
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
+  {
+    date: "2001-09",
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
+  {
+    date: "2001-10",
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
+  {
+    date: "2001-11",
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
+  {
+    date: "2001-12",
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
 ];
 
 const monthTickFormatter = (tick) => {
@@ -84,21 +156,36 @@ const monthTickFormatter = (tick) => {
 };
 
 const renderQuarterTick = (tickProps) => {
+  console.log("tickProps=", tickProps);
   const { x, y, payload } = tickProps;
   const { value, offset } = payload;
   const date = new Date(value);
   const month = date.getMonth();
-  const quarterNo = Math.floor(month / 3) + 1;
-  const isMidMonth = month % 3 === 1;
+  console.log("month=", month);
+  // const year = date.getYear();
+  // const quarterNo = Math.floor(month / 3) + 1;
+  // const isMidMonth = month % 3 === 1;
 
-  if (month % 3 === 1) {
-    // return <text x={x} y={y - 4} textAnchor="middle">{`Q${quarterNo}`}</text>;
-    return <text x={x} y={y - 4} textAnchor="middle">{value}</text>;
+  // if (month % 3 === 1) {
+  //   // return <text x={x} y={y - 4} textAnchor="middle">{`Q${quarterNo}`}</text>;
+  //   return <text x={x} y={y - 4} textAnchor="middle">{value}</text>;
+  // }
+  if (month === 5) {
+    return (
+      <text x={x} y={y - 4} textAnchor="middle">
+        {date.getFullYear()}
+      </text>
+    );
   }
-
+  // const isLast = month === 11;
   const isLast = month === 11;
 
-  if (month % 3 === 0 || isLast) {
+  // if (month % 3 === 0 || isLast) {
+  //   const pathX = Math.floor(isLast ? x + offset : x - offset) + 0.5;
+
+  //   return <path d={`M${pathX},${y - 4}v${-35}`} stroke="red" />;
+  // }
+  if (month === 11 || isLast) {
     const pathX = Math.floor(isLast ? x + offset : x - offset) + 0.5;
 
     return <path d={`M${pathX},${y - 4}v${-35}`} stroke="red" />;
@@ -109,7 +196,7 @@ const renderQuarterTick = (tickProps) => {
 const App = () => {
   return (
     <BarChart
-      width={500}
+      width={900}
       height={300}
       data={data}
       margin={{
